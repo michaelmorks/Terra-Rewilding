@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terra Rewilding — Ecological Design & Rewilding</title>
+<meta name="description" content="Terra Rewilding — uniting nature and society through ecological design, rewilding, and sustainable environments.">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- STARFIELD -->
+<canvas id="starfield"></canvas>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <video autoplay muted loop playsinline>
+    <source src="videos/hero.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-content">
+    <h1>
+      <span class="terra">TERRA</span><br>
+      <span class="rewilding">REWILDING</span>
+    </h1>
+    <button class="enter-btn" onclick="enterSite()" aria-label="Enter Terra Rewilding website">Enter Terra Rewilding Website</button>
+  </div>
+</div>
+
+<!-- MESSAGE SCREEN -->
+<div id="messageScreen">
+  Your First Step in uniting nature and its beauty with our society.
+</div>
+
+
+<script>
+  function enterSite() {
+    const hero = document.getElementById("hero");
+    const msg = document.getElementById("messageScreen");
+  
+    // Step 1: fade hero to black
+    hero.style.transition = "opacity 2s";
+    hero.style.opacity = "0";
+  
+    // Step 2: after 2 seconds, show stars image
+    setTimeout(() => {
+      const starImg = document.createElement("img");
+      starImg.src = "herophotos/hero-stars.jpg"; // replace with your actual image path
+      starImg.alt = "Stars background";
+      starImg.id = "starImage";
+      starImg.style.position = "fixed";
+      starImg.style.top = "0";
+      starImg.style.left = "0";
+      starImg.style.width = "100%";
+      starImg.style.height = "100%";
+      starImg.style.zIndex = "1";
+      starImg.style.opacity = "0";
+      starImg.style.transition = "opacity 1.5s";
+      document.body.appendChild(starImg);
+  
+      // Fade in the stars
+      setTimeout(() => {
+        starImg.style.opacity = "1";
+      }, 50);
+  
+      // Step 3: show the message
+      const scale = Math.min(window.innerWidth / 600, 1.1);
+      msg.style.transform = `scale(${scale})`;
+      msg.style.opacity = "1";
+    }, 2000);
+  
+    // Step 4: hide message after 6 seconds
+    setTimeout(() => {
+      msg.style.transform = "scale(0.4)";
+      msg.style.opacity = "0";
+    }, 8000); // 2s fade + 6s display
+  
+    // Step 5: redirect to main.html after total 9.5 seconds
+    setTimeout(() => {
+      window.location.href = "main.html";
+    }, 9500);
+  }
+  </script>
+  
+  
+
+</body>
+</html>
