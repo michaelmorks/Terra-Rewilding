@@ -10,6 +10,69 @@ section, .hero-container, .profile-scroll, .video-grid, .process-viewport {
   max-width: 100%;
   overflow-x: hidden;
 }
+/* ===== GLOBAL HEADINGS ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Caveat', cursive; /* natural handwritten style */
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: #000; /* default black, can override per section */
+}
+
+/* Specific sizes */
+h1 {
+  font-size: 700px;  /* bigger and responsive */
+  font-family: 'Caveat', cursive;    /* your title font */
+  font-weight: 700;
+  text-align: center;                /* optional, center it */
+}
+
+/* Optional: style the two words differently */
+h1 .green {
+  color: #0fb400;  /* Terra in green */
+}
+
+h1 .black {
+  color: #000;     /* Rewilding in black */
+}
+
+h2 {
+  font-size: clamp(2.5rem, 4vw, 3.2rem);
+}
+
+h3 {
+  font-size: clamp(2rem, 3vw, 2.5rem);
+}
+
+h4 {
+  font-size: clamp(1.8rem, 2.5vw, 2rem);
+}
+
+h5 {
+  font-size: clamp(1.5rem, 2vw, 1.8rem);
+}
+
+h6 {
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+}
+
+/* ===== MOBILE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.8rem; }
+  h3 { font-size: 1.6rem; }
+  h4 { font-size: 1.4rem; }
+  h5 { font-size: 1.2rem; }
+  h6 { font-size: 1rem; }
+}
+
+p {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+
+
 
 
 * {
@@ -261,7 +324,6 @@ html {
   padding: 0 20px; /* horizontal padding only */
   background: linear-gradient(to bottom, #000000 0%, #f8f6f2 100%);
   text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #fff;
 }
 
@@ -376,13 +438,36 @@ html {
   color: #fff;
 }
 
-.hero-right h1 {
+.hero-title {
+  font-family: 'Caveat', cursive; /* handwritten natural style */
   font-size: 3rem;
   margin-bottom: 20px;
   font-weight: 700;
+  line-height: 1.2;
+  text-align: left; /* desktop default */
 }
 
+/* Word-specific colors */
+.hero-title .terra {
+  color: #0fb400; /* bright green */
+}
+
+.hero-title .rewilding {
+  color: #000000; /* black */
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.2rem;
+    text-align: center;
+  }
+}
+
+
+/* Adjust paragraph slightly for harmony */
 .hero-right p {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* keep body clean */
   font-size: 1.2rem;
   line-height: 1.6;
   color: #f1f1f1;
