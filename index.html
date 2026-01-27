@@ -10,12 +10,22 @@
 
 <body>
 
-<!-- STARFIELD CANVAS (kept for later use) -->
+<!-- STARFIELD CANVAS -->
 <canvas id="starfield"></canvas>
 
 <!-- HERO -->
 <div class="hero" id="hero">
+
+  <!-- MOBILE IMAGE (phones only) -->
+  <img
+    src="herophotos/hero-mobile.jpg"
+    alt="Terra Rewilding landscape"
+    class="hero-image"
+  />
+
+  <!-- DESKTOP VIDEO -->
   <video
+    class="hero-video"
     autoplay
     muted
     loop
@@ -53,15 +63,15 @@
     const msg = document.getElementById("messageScreen");
     const btn = document.querySelector(".enter-btn");
 
-    // Prevent double-tap on mobile
+    // Prevent double-tap
     btn.disabled = true;
     btn.style.pointerEvents = "none";
 
-    /* STEP 1 — fade hero to black */
+    /* STEP 1 — fade hero */
     hero.style.transition = "opacity 2s ease";
     hero.style.opacity = "0";
 
-    /* STEP 2 — show stars after fade */
+    /* STEP 2 — stars */
     setTimeout(() => {
       const starImg = document.createElement("img");
       starImg.src = "herophotos/hero-stars.jpg";
@@ -94,18 +104,16 @@
 
     }, 2000);
 
-/* STEP 4 — hide message smoothly */
-setTimeout(() => {
-  msg.style.opacity = "0";
-  msg.style.transform = "scale(0.4)";
+    /* STEP 4 — hide message smoothly */
+    setTimeout(() => {
+      msg.style.opacity = "0";
+      msg.style.transform = "scale(0.4)";
 
-  // wait for transition to finish before hiding
-  setTimeout(() => {
-    msg.style.visibility = "hidden";
-    msg.setAttribute("aria-hidden", "true");
-  }, 4000); // MUST match CSS transition duration
-}, 8000);
-
+      setTimeout(() => {
+        msg.style.visibility = "hidden";
+        msg.setAttribute("aria-hidden", "true");
+      }, 4000);
+    }, 8000);
 
     /* STEP 5 — redirect */
     setTimeout(() => {
@@ -114,11 +122,11 @@ setTimeout(() => {
   }
 </script>
 
-<!-- MOBILE AUTOPLAY SAFETY -->
+<!-- DESKTOP AUTOPLAY SAFETY -->
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const video = document.querySelector(".hero video");
-    if (video) {
+    const video = document.querySelector(".hero-video");
+    if (video && window.innerWidth > 768) {
       video.muted = true;
       video.play().catch(() => {});
     }
