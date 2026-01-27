@@ -1040,26 +1040,17 @@ html {
 
 @media (max-width: 768px) {
 
-  .safe-data-sheet {
-    padding: 70px 6%;
-  }
-
   .safe-wrapper {
     flex-direction: column;
     gap: 40px;
     text-align: center;
-    align-items: center;  /* <-- add this */
-  }
-
-  .safe-text {
-    width: 100%;           /* optional, ensure full-width text */
+    align-items: center;  /* center the stack */
   }
 
   .safe-preview {
-    max-width: none;
-    width: 100%;           /* optional: make paper stack responsive */
+    width: 100%;
     display: flex;
-    justify-content: center; /* center the stack */
+    justify-content: center; /* paper stack centered */
   }
 
   .paper-stack {
@@ -1067,27 +1058,36 @@ html {
     height: 300px;
   }
 
-  .paper-link:hover {
-    transform: none; /* better for touch */
-  }
-
   .pdf-content {
+    position: fixed;
+    inset: 0;
     width: 100%;
     height: 100%;
     border-radius: 0;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
   }
 
-  .pdf-content {
-    overflow: auto;      /* allow scrolling inside modal */
-  }
-  
   .pdf-content iframe {
-    height: 100%;        /* keep full height */
+    flex: 1;        /* takes all remaining space */
     width: 100%;
-    min-height: 800px;   /* ensure PDF is tall enough to scroll on mobile */
+    height: 100%;
+    border: none;
   }
-  
+
+  .download-btn {
+    padding: 15px;
+    background: #111;
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+    text-decoration: none;
+    width: 100%;           /* span full width at bottom */
+    display: block;
+  }
 }
+
 
 
 
@@ -1514,35 +1514,38 @@ html {
   font-weight: 600;
 }
 
-
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
 
   /* ===== BEFORE / AFTER IMAGES ===== */
   .before-after-images {
-    flex-direction: column; /* stack images vertically */
-    gap: 15px;
+    flex-direction: row;      /* keep side by side like desktop */
+    flex-wrap: wrap;          /* allow wrapping if needed */
+    justify-content: center;  /* center the images */
+    gap: 20px;                /* spacing between images */
   }
 
   .before-after-images img {
-    width: 90%;       /* make images smaller and responsive */
+    width: 45%;       /* smaller than desktop to fit on phone */
     height: auto;     /* maintain aspect ratio */
-    max-width: 300px; /* optional: prevent too big */
+    max-width: 200px; /* optional max-width */
   }
 
   /* ===== VIDEO GRID ===== */
   .video-grid {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;       /* smaller spacing between videos */
+    flex-direction: row;      /* keep side by side like desktop */
+    flex-wrap: wrap;          /* wrap to next line if needed */
+    justify-content: center;  /* center videos */
+    gap: 20px;                /* spacing between videos */
   }
 
   .video-grid video {
-    width: 90%;       /* smaller, responsive */
+    width: 45%;       /* smaller to fit mobile screen */
     height: auto;     /* maintain aspect ratio */
-    max-width: 320px; /* optional: prevent too big */
+    max-width: 250px; /* optional max-width */
   }
 }
+
 
 
 
