@@ -953,7 +953,6 @@ html {
   background: #333;
 }
 
-/* ===== MOBILE IMPROVEMENTS ===== */
 @media (max-width: 768px) {
 
   .safe-data-sheet {
@@ -964,10 +963,18 @@ html {
     flex-direction: column;
     gap: 40px;
     text-align: center;
+    align-items: center;  /* <-- add this */
+  }
+
+  .safe-text {
+    width: 100%;           /* optional, ensure full-width text */
   }
 
   .safe-preview {
     max-width: none;
+    width: 100%;           /* optional: make paper stack responsive */
+    display: flex;
+    justify-content: center; /* center the stack */
   }
 
   .paper-stack {
@@ -985,6 +992,7 @@ html {
     border-radius: 0;
   }
 }
+
 
 
 
