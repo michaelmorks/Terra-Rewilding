@@ -26,6 +26,7 @@
     object-fit: cover;
     object-position: center top;
     animation: videoShift 15s ease-in-out infinite alternate;
+    pointer-events: none;
   }
   
   .hero-content {
@@ -93,15 +94,17 @@
     text-align: center;
     font-size: clamp(1.2rem, 4vw, 2rem);
     opacity: 0;
+    visibility: hidden; /* 🔥 ADD THIS */
     pointer-events: none;
     z-index: 1000;
     padding: 0 20px;
     line-height: 1.6;
     transform: scale(0.3);
     transition: transform 4s ease, opacity 4s ease;
-    word-break: break-word;
-    max-width: 90%; /* prevent overflow on small screens */
   }
+
+  
+  
   
   /* STARFIELD */
   #starfield {
