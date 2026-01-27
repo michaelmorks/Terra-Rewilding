@@ -1255,6 +1255,7 @@ html {
 
 
 
+
 /* ================= PORTFOLIO / PROFILE SECTION ================= */
 
 .portfolio-section {
@@ -1428,33 +1429,36 @@ html {
   font-weight: 600;
 }
 
+
 /* ===== RESPONSIVE ===== */
-@media (max-width: 1024px) {
-  .before-after-images img {
-    width: 250px;
-    height: 250px;
-  }
-
-  .video-grid video {
-    height: 260px;
-  }
-}
-
 @media (max-width: 768px) {
-  .before-after-images img {
-    width: 300px;
-    height: 200px;
+
+  /* ===== BEFORE / AFTER IMAGES ===== */
+  .before-after-images {
+    flex-direction: column; /* stack images vertically */
+    gap: 15px;
   }
 
+  .before-after-images img {
+    width: 90%;       /* make images smaller and responsive */
+    height: auto;     /* maintain aspect ratio */
+    max-width: 300px; /* optional: prevent too big */
+  }
+
+  /* ===== VIDEO GRID ===== */
   .video-grid {
     flex-direction: column;
     align-items: center;
+    gap: 15px;       /* smaller spacing between videos */
   }
 
   .video-grid video {
-    height: 250px;
+    width: 90%;       /* smaller, responsive */
+    height: auto;     /* maintain aspect ratio */
+    max-width: 320px; /* optional: prevent too big */
   }
 }
+
 
 
 
