@@ -991,6 +991,17 @@ html {
     height: 100%;
     border-radius: 0;
   }
+
+  .pdf-content {
+    overflow: auto;      /* allow scrolling inside modal */
+  }
+  
+  .pdf-content iframe {
+    height: 100%;        /* keep full height */
+    width: 100%;
+    min-height: 800px;   /* ensure PDF is tall enough to scroll on mobile */
+  }
+  
 }
 
 
