@@ -1,4 +1,17 @@
 /* ================= RESET DEFAULT STYLES ================= */
+/* Prevent horizontal scrolling on mobile and desktop */
+html, body {
+  overflow-x: hidden;  /* Prevent left-right scrolling */
+  width: 100%;         /* Ensure body doesn't exceed viewport width */
+}
+
+/* Optional: make sure all main sections respect viewport width */
+section, .hero-container, .profile-scroll, .video-grid, .process-viewport {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+
 * {
   margin: 0;
   padding: 0;
