@@ -10,29 +10,47 @@
 </head>
 
 <body>
-  <!-- ================= NAV BAR ================= -->
-  <nav class="navbar">
 
-    <!-- Left: Logo -->
-    <div class="nav-logo">
-      <img src="herophotos/4.jpg" alt="Terra Rewilding Logo" class="logo" onclick="location.reload()">
+
+<!-- ================= NAV BAR ================= -->
+<nav class="navbar">
+
+  <!-- Left: Logo -->
+  <div class="nav-logo">
+    <img
+      src="herophotos/4.jpg"
+      alt="Terra Rewilding Logo"
+      onclick="location.reload()"
+    >
+  </div>
+
+  <!-- Center -->
+  <div class="nav-center"></div>
+
+  <!-- Right -->
+  <div class="nav-right">
+    <!-- Hamburger (DESKTOP + MOBILE) -->
+    <div class="hamburger" onclick="toggleMenu()" role="button" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
+  </div>
 
-    <!-- Center: Slogan -->
-    <div class="nav-center"></div>
+</nav>
+<!-- =============== END NAV BAR =============== -->
 
-    <!-- Right: Navigation Links -->
-    <div class="nav-right">
-      <a href="#me">My Story</a>
-      <a href="#about">What is Terra Rewilding?</a>
-      <a href="#profile">Terra Rewilding in Practice</a>
-      <a href="#services">Ways we Rewild</a>
-      <a href="#Maintenance">Maintenance Sheet</a>
-      <a href="#contact">Contacts</a>
-    </div>
+<!-- ================= DROPDOWN MENU ================= -->
+<div class="mobile-menu" id="mobileMenu" role="menu">
+  <div class="stars"></div>
 
-  </nav>
-  <!-- =============== END NAV BAR =============== -->
+  <a href="#me" onclick="closeMenu()">My Story</a>
+  <a href="#about" onclick="closeMenu()">What is Terra Rewilding?</a>
+  <a href="#profile" onclick="closeMenu()">Terra Rewilding in Practice</a>
+  <a href="#services" onclick="closeMenu()">Ways we Rewild</a>
+  <a href="#Maintenance" onclick="closeMenu()">Maintenance Sheet</a>
+  <a href="#contact" onclick="closeMenu()">Contacts</a>
+</div>
 
 
 
@@ -598,6 +616,18 @@ function changeProcess(direction) {
   });
 </script>
 
+<script>
+  function toggleMenu() {
+    document.getElementById("mobileMenu").classList.toggle("active");
+  }
+
+  function closeMenu() {
+    document.getElementById("mobileMenu").classList.remove("active");
+  }
+</script>
+
+
+  
 
 
 </body>
