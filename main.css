@@ -377,6 +377,7 @@ html {
   animation: twinkle-medium 2.8s infinite ease-in-out alternate;
 }
 
+
 /* ================= HERO CONTENT ================= */
 .hero-container {
   display: flex;
@@ -397,6 +398,8 @@ html {
   overflow: hidden;
   border-radius: 15px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+
+  animation: flyInLeftFast 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
 .slide {
@@ -454,6 +457,10 @@ html {
   font-weight: 700;
   line-height: 1.2;
   text-align: left; /* desktop default */
+
+  animation: flyInBottomFast 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
 }
 
 /* Word-specific colors */
@@ -480,6 +487,10 @@ html {
   font-size: 1.2rem;
   line-height: 1.6;
   color: #f1f1f1;
+
+  animation: flyInBottomFast 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: 0.45s;
+  opacity: 0;
 }
 
 .green {
@@ -502,6 +513,11 @@ html {
   font-weight: 500;
   transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  text-align: center;
+
+  animation: flyInBottomFast 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: 0.6s;
+  opacity: 0;
 }
 
 .discover-btn:hover {
@@ -571,8 +587,66 @@ html {
   .discover-btn {
     display: block;
     margin: 20px auto 0;
+    width: 200px;
   }
 }
+
+/* ===== FAR FAST HERO ENTRY ANIMATIONS ===== */
+
+@keyframes flyInLeftFast {
+  0% {
+    opacity: 0;
+    transform: translateX(-600px) scale(0.9);
+    filter: blur(8px);
+  }
+
+  80% {
+    transform: translateX(20px) scale(1.02);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes flyInRightFast {
+  0% {
+    opacity: 0;
+    transform: translateX(600px) scale(0.9);
+    filter: blur(8px);
+  }
+
+  80% {
+    transform: translateX(-20px) scale(1.02);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes flyInBottomFast {
+  0% {
+    opacity: 0;
+    transform: translateY(400px) scale(0.9);
+    filter: blur(8px);
+  }
+
+  80% {
+    transform: translateY(-10px) scale(1.02);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
 
 
 
