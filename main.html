@@ -698,32 +698,31 @@ function changeProcess(direction) {
   window.addEventListener("load", () => {
     const loader = document.getElementById("loader");
   
-    // Only show loader on main.html
-    if (!window.location.pathname.endsWith("main.html")) {
+    // Only run loader on main.html
+    if (!window.location.pathname.includes("main.html")) {
       loader.style.display = "none";
       return;
     }
   
-    // Use sessionStorage to track first visit
     const hasVisitedMain = sessionStorage.getItem("hasVisitedMain");
   
     if (!hasVisitedMain) {
-      // First visit → hide loader immediately
+      // First visit: hide loader immediately
       loader.style.display = "none";
-      sessionStorage.setItem("hasVisitedMain", "true"); // mark as visited
+      sessionStorage.setItem("hasVisitedMain", "true");
       return;
     }
   
-    // If page refreshed (already visited in session), show loader
+    // Subsequent visit: show loader briefly
     loader.style.display = "flex";
     document.body.classList.add("loading");
   
-    // Let animation play (~1.7s)
+    // Trigger fade out after the animation starts (~1.7s)
     setTimeout(() => {
       loader.classList.add("hidden");
-    }, 1700);
+    }, 100); // small delay to ensure browser renders first
   
-    // Remove loader completely after fade
+    // Remove loader after CSS transition ends
     loader.addEventListener("transitionend", (e) => {
       if (e.propertyName === "opacity") {
         loader.style.display = "none";
@@ -732,6 +731,7 @@ function changeProcess(direction) {
     }, { once: true });
   });
   </script>
+  
   
   
   

@@ -64,6 +64,11 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
 }
+
+
+
+
+
 /* ===== LOADING SCREEN ===== */
 .loading-screen {
   background-color: #ffffff;
@@ -135,6 +140,7 @@ html {
   70% { opacity: 1; transform: translateX(-3%) scale(1.015); }
   100% { opacity: 1; transform: translateX(0) scale(1); }
 }
+
 
 
 /* ================= NAVBAR ================= */
