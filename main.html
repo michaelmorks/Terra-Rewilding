@@ -697,29 +697,32 @@ function changeProcess(direction) {
 <script>
   window.addEventListener("load", () => {
     const loader = document.getElementById("loader");
-
-    // Only run loader on main.html and show on refresh
-    if (window.location.pathname === "/main.html" || window.location.pathname === "/main.html/") {
-      // Check if it's a refresh
-      if (sessionStorage.getItem("hasVisitedMain") === null) {
-        // Set flag to show loader on refresh
-        sessionStorage.setItem("hasVisitedMain", "true");
-        // Show loader on main.html on refresh
-        loader.style.display = "flex";
-        document.body.classList.add("loading");
-        // Trigger fade out after the animation start
-      } else {
-        // First visit or new session: hide loader immediatelly
+  
+    // Only run loader on main.html
+    if (!window.location.pathname.includes("main.html")) {
+      loader.style.display = "none";
+      return;
+    }
+  
+    // Show loader
+    loader.style.display = "flex";
+    document.body.classList.add("loading");
+  
+    // Fade out loader after animation (~1.7s)
+    setTimeout(() => {
+      loader.classList.add("hidden");
+    }, 1700); // adjust to match your animation length
+  
+    // Remove loader completely after fade
+    loader.addEventListener("transitionend", (e) => {
+      if (e.propertyName === "opacity") {
         loader.style.display = "none";
         document.body.classList.remove("loading");
       }
-    } else {
-      // Hide loader immediatelly when not on main.html
-      loader.style.display = "none";
-      document.body.classList.remove("loading");
-    }
+    }, { once: true });
   });
-</script>
+  </script>
+  
   
   
   
