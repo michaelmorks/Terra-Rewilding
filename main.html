@@ -693,7 +693,6 @@ function changeProcess(direction) {
 </script>
 
 
-
 <script>
   window.addEventListener("load", () => {
     const loader = document.getElementById("loader");
@@ -707,30 +706,31 @@ function changeProcess(direction) {
     const hasVisitedMain = sessionStorage.getItem("hasVisitedMain");
   
     if (!hasVisitedMain) {
-      // First visit: hide loader immediately
-      loader.style.display = "none";
+      // First visit: show loader
+      loader.style.display = "flex";
+      document.body.classList.add("loading");
+      
+      // Mark as visited
       sessionStorage.setItem("hasVisitedMain", "true");
-      return;
+      
+      // Trigger fade out after the animation starts (~2s)
+      setTimeout(() => {
+        loader.classList.add("hidden");
+      }, 2000); // delay to ensure browser renders first
+  
+      // Remove loader after CSS transition ends
+      loader.addEventListener("transitionend", (e) => {
+        if (e.propertyName === "opacity") {
+          loader.style.display = "none";
+          document.body.classList.remove("loading");
+        }
+      }, { once: true });
+    } else {
+      // Subsequent visits: do not show loader
+      loader.style.display = "none";
     }
-  
-    // Subsequent visit: show loader briefly
-    loader.style.display = "flex";
-    document.body.classList.add("loading");
-  
-    // Trigger fade out after the animation starts (~1.7s)
-    setTimeout(() => {
-      loader.classList.add("hidden");
-    }, 100); // small delay to ensure browser renders first
-  
-    // Remove loader after CSS transition ends
-    loader.addEventListener("transitionend", (e) => {
-      if (e.propertyName === "opacity") {
-        loader.style.display = "none";
-        document.body.classList.remove("loading");
-      }
-    }, { once: true });
   });
-  </script>
+</script>
   
   
   
