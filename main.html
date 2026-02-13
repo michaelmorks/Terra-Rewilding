@@ -684,40 +684,42 @@ function changeProcess(direction) {
 <script>
   window.addEventListener("load", () => {
     const loader = document.getElementById("loader");
-
+  
     // Only show loader on main.html
     if (!window.location.pathname.endsWith("main.html")) {
       loader.style.display = "none";
       return;
     }
-
-    // Detect page refresh
-    const navType = performance.getEntriesByType("navigation")[0].type;
-
-    if (navType === "reload") {
-      // Show loader
-      loader.style.display = "flex";
-      document.body.classList.add("loading");
-
-      // Trigger fade-out after short delay
-      setTimeout(() => {
-        loader.classList.add("hidden");
-      }, 2000);
-
-      // Remove loader completely after transition
-      loader.addEventListener("transitionend", (e) => {
-        if (e.propertyName === "opacity") {
-          loader.style.display = "none";
-          document.body.classList.remove("loading");
-        }
-      }, { once: true });
-
-    } else {
-      // Not a refresh → hide loader immediately
+  
+    // Use sessionStorage to track first visit
+    const hasVisitedMain = sessionStorage.getItem("hasVisitedMain");
+  
+    if (!hasVisitedMain) {
+      // First visit → hide loader immediately
       loader.style.display = "none";
+      sessionStorage.setItem("hasVisitedMain", "true"); // mark as visited
+      return;
     }
+  
+    // If page refreshed (already visited in session), show loader
+    loader.style.display = "flex";
+    document.body.classList.add("loading");
+  
+    // Let animation play (~1.7s)
+    setTimeout(() => {
+      loader.classList.add("hidden");
+    }, 1700);
+  
+    // Remove loader completely after fade
+    loader.addEventListener("transitionend", (e) => {
+      if (e.propertyName === "opacity") {
+        loader.style.display = "none";
+        document.body.classList.remove("loading");
+      }
+    }, { once: true });
   });
-</script>
+  </script>
+  
   
   
   
