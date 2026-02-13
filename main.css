@@ -81,11 +81,9 @@ html {
 
   /* Smooth fade-out */
   transition: opacity 0.8s ease, visibility 0.8s ease;
-}
-
-body.loading {
   overflow: hidden; /* prevent scrolling */
 }
+
 
 
 
