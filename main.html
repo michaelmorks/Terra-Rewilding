@@ -12,12 +12,12 @@
 <body>
 
   <!-- ⭐ Loading Screen -->
-<div class="loading-screen" id="loader">
-  <h1 class="company-name">
-    <span class="terra"><strong>Terra</strong></span>
-    <span class="rewilding"> <strong>Rewilding</strong></span>
-  </h1>
-</div>
+  <div class="loading-screen" id="loader">
+    <h1 class="company-name">
+      <span class="terra"><strong>Terra</strong></span>
+      <span class="rewilding"><strong>Rewilding</strong></span>
+    </h1>
+  </div>
 
 
 <!-- ================= NAV BAR ================= -->
@@ -679,37 +679,45 @@ function changeProcess(direction) {
 </script>
 
 
+
 <script>
   window.addEventListener("load", () => {
-  
     const loader = document.getElementById("loader");
-  
-    // Hide loader by default
-    loader.style.display = "none";
-  
+
     // Only show loader on main.html
-    if (window.location.pathname.endsWith("main.html")) {
-  
-      // Detect if page was refreshed
-      const navType = performance.getEntriesByType("navigation")[0].type;
-  
-      if (navType === "reload") {
-        // Show loader on refresh
-        loader.style.display = "flex"; // make visible
-        document.body.classList.add("loading"); // prevent scrolling
-  
-        setTimeout(() => {
-          loader.classList.add("hidden");
-          document.body.classList.remove("loading");
-        }, 1800);
-  
-      } 
-      // If not reload, loader remains hidden → navigating from index.html
-  
+    if (!window.location.pathname.endsWith("main.html")) {
+      loader.style.display = "none";
+      return;
     }
-  
+
+    // Detect page refresh
+    const navType = performance.getEntriesByType("navigation")[0].type;
+
+    if (navType === "reload") {
+      // Show loader
+      loader.style.display = "flex";
+      document.body.classList.add("loading");
+
+      // Trigger fade-out after short delay
+      setTimeout(() => {
+        loader.classList.add("hidden");
+      }, 2000);
+
+      // Remove loader completely after transition
+      loader.addEventListener("transitionend", (e) => {
+        if (e.propertyName === "opacity") {
+          loader.style.display = "none";
+          document.body.classList.remove("loading");
+        }
+      }, { once: true });
+
+    } else {
+      // Not a refresh → hide loader immediately
+      loader.style.display = "none";
+    }
   });
-  </script>
+</script>
+  
   
   
 

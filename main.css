@@ -64,40 +64,35 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
 }
-
 /* ===== LOADING SCREEN ===== */
 .loading-screen {
-  background-color: #ffffff; /* full white */
+  background-color: #ffffff;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  /* Use min-height to cover the viewport including mobile address bar quirks */
-  min-height: 100vh; 
-  height: 100dvh; /* modern solution for mobile viewport */
-  z-index: 9999; /* above everything */
-
+  height: 100dvh; /* full mobile viewport */
   display: flex;
   justify-content: center;
   align-items: center;
-
-  /* Smooth fade-out */
+  z-index: 9999;
   transition: opacity 0.8s ease, visibility 0.8s ease;
-  overflow: hidden; /* prevent scrolling */
-}
-
-/* Optional: prevent scrolling while loading */
-body.loading {
+  opacity: 1;
+  visibility: visible;
   overflow: hidden;
 }
 
-/* Modern viewport units support for mobile */
-@supports (height: 100dvh) {
-  .loading-screen {
-    height: 100dvh; /* ensures full mobile coverage */
-  }
+.loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 
+/* Modern viewport units fallback */
+@supports (height: 100dvh) {
+  .loading-screen {
+    height: 100dvh;
+  }
+}
 
 /* ===== COMPANY NAME ===== */
 .company-name {
@@ -105,72 +100,40 @@ body.loading {
   font-weight: 600;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   letter-spacing: 1.5px;
-
   display: flex;
   align-items: center;
   gap: 14px; /* spacing between Terra and Rewilding */
 }
 
-/* ===== Terra ===== */
 .terra {
   color: #2ecc71;
   display: inline-block;
   font-weight: 700;
-
   opacity: 0;
   transform: translateX(-90%) scale(0.95);
-
   animation: slideLeftModern 1.3s cubic-bezier(.22,.61,.36,1) forwards;
 }
 
-/* ===== Rewilding ===== */
 .rewilding {
   color: black;
   display: inline-block;
   font-weight: 500;
-
   opacity: 0;
   transform: translateX(90%) scale(0.95);
-
   animation: slideRightModern 1.3s cubic-bezier(.22,.61,.36,1) forwards;
   animation-delay: 0.18s;
 }
 
-/* ===== Modern Smooth Animations ===== */
 @keyframes slideLeftModern {
-
-  0% {
-    opacity: 0;
-    transform: translateX(-90%) scale(0.94);
-  }
-
-  70% {
-    opacity: 1;
-    transform: translateX(3%) scale(1.015);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
+  0% { opacity: 0; transform: translateX(-90%) scale(0.94); }
+  70% { opacity: 1; transform: translateX(3%) scale(1.015); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
 }
 
 @keyframes slideRightModern {
-
-  0% {
-    opacity: 0;
-    transform: translateX(90%) scale(0.94);
-  }
-
-  70% {
-    opacity: 1;
-    transform: translateX(-3%) scale(1.015);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
+  0% { opacity: 0; transform: translateX(90%) scale(0.94); }
+  70% { opacity: 1; transform: translateX(-3%) scale(1.015); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
 }
 
 
