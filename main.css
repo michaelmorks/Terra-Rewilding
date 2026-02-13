@@ -72,7 +72,9 @@ html {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  /* Use min-height to cover the viewport including mobile address bar quirks */
+  min-height: 100vh; 
+  height: 100dvh; /* modern solution for mobile viewport */
   z-index: 9999; /* above everything */
 
   display: flex;
@@ -84,17 +86,18 @@ html {
   overflow: hidden; /* prevent scrolling */
 }
 
-body.loading{
-  overflow: hidden; /* prevent scrolling */
+/* Optional: prevent scrolling while loading */
+body.loading {
+  overflow: hidden;
 }
 
-
-
-/* Hide class for fade out */
-.loading-screen.hidden {
-  opacity: 0;
-  visibility: hidden;
+/* Modern viewport units support for mobile */
+@supports (height: 100dvh) {
+  .loading-screen {
+    height: 100dvh; /* ensures full mobile coverage */
+  }
 }
+
 
 /* ===== COMPANY NAME ===== */
 .company-name {

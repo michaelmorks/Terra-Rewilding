@@ -678,36 +678,39 @@ function changeProcess(direction) {
   }
 </script>
 
+
 <script>
   window.addEventListener("load", () => {
   
-    // Get loader
     const loader = document.getElementById("loader");
   
-    // Only run on main.html
+    // Hide loader by default
+    loader.style.display = "none";
+  
+    // Only show loader on main.html
     if (window.location.pathname.endsWith("main.html")) {
   
-      // Detect how page was opened
+      // Detect if page was refreshed
       const navType = performance.getEntriesByType("navigation")[0].type;
   
       if (navType === "reload") {
-        // Only show animation on refresh
-        loader.style.display = "flex"; // ensure visible
+        // Show loader on refresh
+        loader.style.display = "flex"; // make visible
+        document.body.classList.add("loading"); // prevent scrolling
+  
         setTimeout(() => {
           loader.classList.add("hidden");
+          document.body.classList.remove("loading");
         }, 1800);
-      } else {
-        // Instantly hide loader if NOT refresh
-        loader.style.display = "none";
-      }
   
-    } else {
-      // On any other page (index.html etc.) hide loader
-      loader.style.display = "none";
+      } 
+      // If not reload, loader remains hidden → navigating from index.html
+  
     }
   
   });
   </script>
+  
   
 
 
