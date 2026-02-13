@@ -698,12 +698,6 @@ function changeProcess(direction) {
   window.addEventListener("load", () => {
     const loader = document.getElementById("loader");
   
-    // Only run loader on main.html
-    if (!window.location.pathname.includes("main.html")) {
-      loader.style.display = "none";
-      return;
-    }
-  
     // Show loader
     loader.style.display = "flex";
     document.body.classList.add("loading");
