@@ -48,6 +48,7 @@
 </nav>
 <!-- =============== END NAV BAR =============== -->
 
+
 <!-- ================= DROPDOWN MENU ================= -->
 <div class="mobile-menu" id="mobileMenu" role="menu">
   <div class="stars"></div>
@@ -724,94 +725,99 @@ function changeProcess(direction) {
 
 
 <script>
-  const cards = document.querySelectorAll(".card");
-  const photoGrid = document.getElementById("photo-grid");
-  const imgs = photoGrid.querySelectorAll("img");
+  document.addEventListener("DOMContentLoaded", () => {
   
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightbox-img");
-  const lightboxClose = document.getElementById("lightbox-close");
+    const cards = document.querySelectorAll(".inspiration-slider .card");
+    const envTitle = document.getElementById("env-title");
+    const envDesc = document.getElementById("env-desc");
+    const photoGrid = document.getElementById("photo-grid");
   
-  const environments = {
-    terrariums: {
-      desc: "Miniature indoor ecosystems featuring lush plants.",
-      images: [
-        "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=600",
-        "https://images.unsplash.com/photo-1598899134739-24c46f58b8d3?w=600",
-        "https://images.unsplash.com/photo-1598887142487-4b7d2e8f2f06?w=600",
-        "https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?w=600"
-      ]
-    },
-    aquariums: {
-      desc: "Underwater ecosystems filled with aquatic life.",
-      images: [
-        "https://images.unsplash.com/photo-1520302630591-fd1c66ed0a8c?w=600",
-        "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=600",
-        "https://images.unsplash.com/photo-1615484477867-0a1c87f0a2fa?w=600",
-        "https://images.unsplash.com/photo-1615484477867-0a1c87f0a2fb?w=600"
-      ]
-    },
-    paludariums: {
-      desc: "Land and water ecosystems combined.",
-      images: [
-        "https://images.unsplash.com/photo-1615484477867-0a1c87f0a2fa?w=600",
-        "https://images.unsplash.com/photo-1589656966895-2f33e7653819?w=600",
-        "https://images.unsplash.com/photo-1589656966895-2f33e7653818?w=600",
-        "https://images.unsplash.com/photo-1589656966895-2f33e7653817?w=600"
-      ]
-    },
-    gardens: {
-      desc: "Natural outdoor plant ecosystems.",
-      images: [
-        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=600",
-        "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?w=600",
-        "https://images.unsplash.com/photo-1497250681960-ef046c08a56f?w=600",
-        "https://images.unsplash.com/photo-1497250681960-ef046c08a56g?w=600"
-      ]
-    },
-    biotopes: {
-      desc: "Precise recreations of natural habitats.",
-      images: [
-        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600",
-        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600",
-        "https://images.unsplash.com/photo-1501785888041-af3ef285b471?w=600",
-        "https://images.unsplash.com/photo-1501785888041-af3ef285b472?w=600"
-      ]
+    // Data for each environment
+    const environments = {
+      terrariums: {
+        title: "Terrariums",
+        desc: "Create lush, self-contained ecosystems with mosses, ferns, and miniature plants.",
+        photos: [
+          "images/terrarium1.jpg",
+          "images/terrarium2.jpg",
+          "images/terrarium3.jpg",
+          "images/terrarium4.jpg"
+        ]
+      },
+      aquariums: {
+        title: "Aquariums",
+        desc: "Bring aquatic life into your home with beautiful fish and water plants.",
+        photos: [
+          "images/aquarium1.jpg",
+          "images/aquarium2.jpg",
+          "images/aquarium3.jpg",
+          "images/aquarium4.jpg"
+        ]
+      },
+      paludariums: {
+        title: "Paludariums",
+        desc: "Combine terrestrial and aquatic elements for a unique ecosystem experience.",
+        photos: [
+          "images/paludarium1.jpg",
+          "images/paludarium2.jpg",
+          "images/paludarium3.jpg",
+          "images/paludarium4.jpg"
+        ]
+      },
+      gardens: {
+        title: "Native Gardens",
+        desc: "Use native plants to create sustainable and low-maintenance landscapes.",
+        photos: [
+          "images/garden1.jpg",
+          "images/garden2.jpg",
+          "images/garden3.jpg",
+          "images/garden4.jpg"
+        ]
+      },
+      biotopes: {
+        title: "Biotopes",
+        desc: "Replicate specific natural environments for a realistic habitat.",
+        photos: [
+          "images/biotope1.jpg",
+          "images/biotope2.jpg",
+          "images/biotope3.jpg",
+          "images/biotope4.jpg"
+        ]
+      }
+    };
+  
+    // Function to update content
+    function updateEnvironment(envKey) {
+      const env = environments[envKey];
+      envTitle.textContent = env.title;
+      envDesc.textContent = env.desc;
+      const imgs = photoGrid.querySelectorAll("img");
+      imgs.forEach((img, index) => {
+        img.src = env.photos[index];
+        img.alt = `${env.title} ${index+1}`;
+      });
     }
-  };
   
-  /* ===== FUNCTION TO UPDATE GRID ===== */
-  function updateGrid(envKey) {
-    const env = environments[envKey];
-    document.getElementById("env-title").textContent = envKey.charAt(0).toUpperCase() + envKey.slice(1);
-    document.getElementById("env-desc").textContent = env.desc;
+    // Initialize on page load: Terrariums
+    updateEnvironment("terrariums");
   
-    // update each img slot
-    imgs.forEach((img, index) => {
-      img.src = env.images[index] || "";
-      img.onclick = () => {
-        lightboxImg.src = img.src;
-        lightbox.classList.add("active");
-      };
+    // Add click events to each card
+    cards.forEach(card => {
+      card.addEventListener("click", () => {
+        // Remove active class from all cards
+        cards.forEach(c => c.classList.remove("active"));
+        // Add active class to clicked card
+        card.classList.add("active");
+  
+        // Update environment content
+        const envKey = card.getAttribute("data-env");
+        updateEnvironment(envKey);
+      });
     });
-  }
   
-  /* ===== CARD CLICK ===== */
-  cards.forEach(card => {
-    card.addEventListener("click", () => {
-      cards.forEach(c => c.classList.remove("active"));
-      card.classList.add("active");
-      updateGrid(card.dataset.env);
-    });
   });
-  
-  /* ===== LIGHTBOX ===== */
-  lightboxClose.addEventListener("click", () => lightbox.classList.remove("active"));
-  lightbox.addEventListener("click", e => { if(e.target===lightbox) lightbox.classList.remove("active"); });
-  
-  /* ===== INITIAL LOAD ===== */
-  updateGrid("terrariums");
   </script>
+  
 
 
   
