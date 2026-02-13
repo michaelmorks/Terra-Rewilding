@@ -65,6 +65,104 @@ html {
   scroll-padding-top: 80px;
 }
 
+/* ===== LOADING SCREEN ===== */
+.loading-screen {
+  background-color: white;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+/* Hide class for fade out */
+.loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ===== COMPANY NAME ===== */
+.company-name {
+  font-size: clamp(2.8rem, 6vw, 5.2rem);
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: 1.5px;
+
+  display: flex;
+  align-items: center;
+  gap: 14px; /* spacing between Terra and Rewilding */
+}
+
+/* ===== Terra ===== */
+.terra {
+  color: #2ecc71;
+  display: inline-block;
+  font-weight: 700;
+
+  opacity: 0;
+  transform: translateX(-90%) scale(0.95);
+
+  animation: slideLeftModern 1.3s cubic-bezier(.22,.61,.36,1) forwards;
+}
+
+/* ===== Rewilding ===== */
+.rewilding {
+  color: black;
+  display: inline-block;
+  font-weight: 500;
+
+  opacity: 0;
+  transform: translateX(90%) scale(0.95);
+
+  animation: slideRightModern 1.3s cubic-bezier(.22,.61,.36,1) forwards;
+  animation-delay: 0.18s;
+}
+
+/* ===== Modern Smooth Animations ===== */
+@keyframes slideLeftModern {
+
+  0% {
+    opacity: 0;
+    transform: translateX(-90%) scale(0.94);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateX(3%) scale(1.015);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slideRightModern {
+
+  0% {
+    opacity: 0;
+    transform: translateX(90%) scale(0.94);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateX(-3%) scale(1.015);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
 
 /* ================= NAVBAR ================= */
 .navbar {
@@ -898,6 +996,163 @@ html {
   }
 }
 
+#Inspirations {
+  padding: 80px 5%;
+  text-align: center;
+}
+
+.inspiration-header h2 {
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+}
+
+.inspiration-header p {
+  color: #555;
+  margin-bottom: 50px;
+}
+
+/* ===== TITLE CARDS ===== */
+.inspiration-slider {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 30px;
+}
+
+.inspiration-slider::-webkit-scrollbar { display: none; }
+
+.card {
+  min-width: 180px;
+  padding: 20px;
+  border-radius: 20px;
+  background: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.4s;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  transform: scale(0.85);
+  opacity: 0.6;
+}
+
+.card.active {
+  transform: scale(1);
+  opacity: 1;
+  background: #2ecc71;
+  color: white;
+}
+
+/* ===== CONTENT ===== */
+.inspiration-content {
+  margin-top: 40px;
+  max-width: 1100px;
+  margin-inline: auto;
+  animation: fadeIn 0.4s ease;
+}
+
+.inspiration-content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.inspiration-content p {
+  margin-bottom: 30px;
+  color: #444;
+}
+
+/* ===== PHOTO GRID ===== */
+.photo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.photo-grid img {
+  width: 100%;
+  border-radius: 18px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Tall-top layout */
+.photo-grid img:nth-child(1),
+.photo-grid img:nth-child(2) { height: 300px; }
+.photo-grid img:nth-child(3),
+.photo-grid img:nth-child(4) { height: 220px; }
+
+/* Mobile */
+@media (max-width: 600px) {
+  .photo-grid { grid-template-columns: 1fr; }
+  .photo-grid img { height: 220px; }
+}
+
+/* ===== FADE ANIMATION ===== */
+@keyframes fadeIn { from {opacity:0; transform:translateY(8px);} to {opacity:1; transform:translateY(0);} }
+
+/* ===== LIGHTBOX ===== */
+.lightbox {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity:0;
+  pointer-events: none;
+  transition: 0.3s ease;
+  z-index: 10000;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 12px;
+}
+
+.lightbox.active {
+  opacity:1;
+  pointer-events: auto;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.card {
+  min-width: 180px;
+  padding: 20px;
+  border-radius: 20px;
+  background: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  transform: scale(0.85);
+  opacity: 0.6;
+}
+
+/* Active card stays scaled */
+.card.active {
+  transform: scale(1);
+  opacity: 1;
+  background: #2ecc71;
+  color: white;
+}
+
+/* Hover effect for non-active cards */
+.card:not(.active):hover {
+  transform: scale(0.95);  /* slight grow */
+  opacity: 0.9;             /* slightly more visible */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15); /* subtle shadow */
+}
 
 
 
