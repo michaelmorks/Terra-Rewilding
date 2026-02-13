@@ -678,33 +678,37 @@ function changeProcess(direction) {
   }
 </script>
 
-<!--------Loading screen Ani-->
 <script>
-
   window.addEventListener("load", () => {
   
+    // Get loader
     const loader = document.getElementById("loader");
   
-    // Detect how page was opened
-    const navType = performance.getEntriesByType("navigation")[0].type;
+    // Only run on main.html
+    if (window.location.pathname.endsWith("main.html")) {
   
-    if (navType === "reload") {
-      
-      // Only show animation on refresh
-      setTimeout(() => {
-        loader.classList.add("hidden");
-      }, 1800);
+      // Detect how page was opened
+      const navType = performance.getEntriesByType("navigation")[0].type;
+  
+      if (navType === "reload") {
+        // Only show animation on refresh
+        loader.style.display = "flex"; // ensure visible
+        setTimeout(() => {
+          loader.classList.add("hidden");
+        }, 1800);
+      } else {
+        // Instantly hide loader if NOT refresh
+        loader.style.display = "none";
+      }
   
     } else {
-      
-      // Instantly hide loader if NOT refresh
+      // On any other page (index.html etc.) hide loader
       loader.style.display = "none";
-  
     }
   
   });
-  
   </script>
+  
 
 
 
