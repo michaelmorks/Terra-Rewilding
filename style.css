@@ -94,26 +94,104 @@ body {
   pointer-events: none;
 }
 
-/* MESSAGE SCREEN */
+/* ===== MESSAGE SCREEN CONTAINER ===== */
 #messageScreen {
   position: fixed;
   inset: 0;
-  background: transparent;
-  color: #fff;
+
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: clamp(1.2rem, 4vw, 2rem);
-  opacity: 0;
-  visibility: hidden; /* hidden by default */
+
+  padding: 0 25px;
   pointer-events: none;
   z-index: 1000;
-  padding: 0 20px;
-  line-height: 1.6;
-  transform: scale(0.3);
-  transition: transform 4s ease, opacity 4s ease;
+
+  opacity: 0;
+  visibility: hidden;
+
+  /* Start far away */
+  transform: perspective(1200px) translateZ(-800px) scale(0.3);
+
+  /* Slight blur while far */
+  filter: blur(6px);
+
+  transition:
+    opacity 2.8s ease,
+    transform 2.8s cubic-bezier(.22,1,.36,1),
+    filter 2.8s ease,
+    visibility 2.8s ease;
 }
+
+
+/* ===== SHOW STATE (Zoom Toward Viewer) ===== */
+#messageScreen.show {
+  opacity: 1;
+  visibility: visible;
+
+  transform: perspective(1200px) translateZ(0) scale(1);
+  filter: blur(0);
+}
+
+
+/* ===== MESSAGE TEXT ===== */
+#messageScreen span {
+  max-width: 850px;
+
+  color: #ffffff;
+
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+
+  -webkit-font-smoothing: antialiased;
+
+  /* Glow + depth */
+  text-shadow:
+    0 0 12px rgba(255,255,255,0.35),
+    0 0 40px rgba(255,255,255,0.15),
+    0 10px 40px rgba(0,0,0,0.6);
+
+  animation:
+    textFloat 6s ease-in-out infinite,
+    glowPulse 4.5s ease-in-out infinite;
+}
+
+
+/* ===== FLOATING MOTION (Alive Feeling) ===== */
+@keyframes textFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+
+/* ===== GLOW BREATHING EFFECT ===== */
+@keyframes glowPulse {
+  0%,100% {
+    text-shadow:
+      0 0 12px rgba(255,255,255,0.35),
+      0 0 40px rgba(255,255,255,0.15),
+      0 10px 40px rgba(0,0,0,0.6);
+  }
+
+  50% {
+    text-shadow:
+      0 0 22px rgba(255,255,255,0.6),
+      0 0 70px rgba(255,255,255,0.25),
+      0 15px 60px rgba(0,0,0,0.75);
+  }
+}
+
+
+
+
 
 /* STARFIELD */
 #starfield {

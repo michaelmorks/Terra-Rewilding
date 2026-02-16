@@ -53,7 +53,7 @@
 
 <!-- MESSAGE SCREEN -->
 <div id="messageScreen" aria-hidden="true">
-  Your First Step in uniting nature and its beauty with our society.
+  <span><strong> Your Journey To Reconnect Nature And Society Begins</strong></span>
 </div>
 
 <!-- MAIN SCRIPT -->
@@ -104,10 +104,8 @@ setTimeout(() => {
 
   /* STEP 3 — show message */
   const scale = Math.min(window.innerWidth / 600, 1.1);
-  msg.style.visibility = "visible";
-  msg.style.opacity = "1";
-  msg.style.transform = `scale(${scale})`;
-  msg.setAttribute("aria-hidden", "false");
+  msg.classList.add("show");
+msg.setAttribute("aria-hidden", "false");
 
 }, 2000);
 
