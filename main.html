@@ -815,6 +815,16 @@ function changeProcess(direction) {
         updateEnvironment(envKey);
       });
     });
+
+  document.addEventListener("DOMContentLoaded", () => {
+  const slider = document.querySelector(".inspiration-slider");
+  
+  if (slider) {
+    slider.scrollLeft = 0;
+  }
+  
+});
+
   
   });
   </script>
