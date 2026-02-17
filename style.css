@@ -129,9 +129,7 @@ body {
 #messageScreen.show {
   opacity: 1;
   visibility: visible;
-
-  transform: perspective(1200px) translateZ(0) scale(1);
-  filter: blur(0);
+  transform: scale(1) translateY(0);
 }
 
 

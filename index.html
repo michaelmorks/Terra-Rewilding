@@ -104,9 +104,7 @@ setTimeout(() => {
 
   /* STEP 3 — show message */
   const scale = Math.min(window.innerWidth / 600, 1.1);
-  msg.style.visibility = "visible";
-msg.style.opacity = "1";
-msg.style.transform = `scale(${scale})`;
+  msg.classList.add("show");
 msg.setAttribute("aria-hidden", "false");
 
 
