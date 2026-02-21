@@ -1457,6 +1457,195 @@ html {
   }
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800&family=Fraunces:ital,wght@0,700;1,400&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+.stats-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.stats-section {
+  width: 100%;
+  max-width: 700px;
+  padding: 80px 24px;
+  align-items: center;
+}
+
+.title {
+  font-size: 2rem;
+  text-align: center;
+
+  margin-bottom: 52px;
+}
+
+.section-label span {
+  font-size: 1.3rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #000000;
+  font-weight: 700;
+}
+
+/* ── Stack with gaps ── */
+.counters {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Individual card ── */
+.counter {
+  position: relative;
+  padding: 36px 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: default;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.3s ease, transform 0.6s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(9, 9, 9, 0.06);
+}
+
+/* All boxes same sage green */
+.counter:nth-child(1),
+.counter:nth-child(2),
+.counter:nth-child(3),
+.counter:nth-child(4) { background: #c4c4c4; }
+
+/* Stagger entrance */
+.counter:nth-child(1) { transition-delay: 0s; }
+.counter:nth-child(2) { transition-delay: 0.12s; }
+.counter:nth-child(3) { transition-delay: 0.24s; }
+.counter:nth-child(4) { transition-delay: 0.36s; }
+
+.counter.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.counter:hover {
+  box-shadow: 0 12px 40px rgba(30, 58, 42, 0.28);
+  transform: translateY(-3px);
+}
+
+
+
+/* ── Green grass line animates in at bottom ── */
+.counter::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(to right, #4a7c59, #6fcf97, #4a7c59);
+  border-radius: 0 0 20px 20px;
+  transition: width 2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.counter.visible::after { width: 100%; }
+.counter:nth-child(1)::after { transition-delay: 0s; }
+.counter:nth-child(2)::after { transition-delay: 0.12s; }
+.counter:nth-child(3)::after { transition-delay: 0.24s; }
+.counter:nth-child(4)::after { transition-delay: 0.36s; }
+
+/* ── Left: icon + label ── */
+.counter-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 1;
+}
+
+.counter-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(30, 58, 42, 0.1);
+  border: 1px solid rgba(30, 58, 42, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.counter:hover .counter-icon {
+  background: rgba(0, 183, 79, 0.9);
+  border-color: rgba(86, 86, 86, 0.3);
+  transform: scale(1.08);
+}
+
+.counter-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: #1e3a2a;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.counter-label {
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 550;
+  transition: color 0.3s ease;
+  z-index: 1;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.counter:hover .counter-label {
+  color: rgba(0, 183, 79, 0.9);
+}
+
+/* ── Right: number ── */
+.number-wrap {
+  font-family: 'Fraunces', Georgia, serif;
+ font-size: 2.9rem;
+  line-height: 1;
+  color: #000000;
+  display: flex;
+  align-items: flex-start;
+  gap: 2px;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.counter:hover .number-wrap {
+  color: rgba(0, 183, 79, 0.9);
+}
+
+.number-wrap .suffix {
+  font-size: 0.45em;
+  color: rgba(0, 0, 0, 0.5);
+  margin-top: 12px;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.counter:hover .suffix{
+  color: rgba(0, 183, 79, 0.9);
+
+}
+
+/* ── Responsive ── */
+@media (max-width: 520px) {
+  .counter { padding: 26px 22px; border-radius: 16px; }
+  .counter-label { font-size: 0.63rem; }
+  .number-wrap { font-size: 38px; }
+  .counters { gap: 10px; }
+}
+
 
 
 

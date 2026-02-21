@@ -175,6 +175,77 @@ In this manner, we give a most genuine appreciation for the <strong>Wurundjeri p
 
 
 
+
+
+
+<!------------Rewvies-->
+
+<div class ="stats-wrapper ">
+<section class="stats-section">
+
+  <div class = "title">
+    <h1><span class = "green">Making an Impact</span> Together</h1>
+
+  </div>
+
+  <div class="counters">
+
+    <div class="counter">
+      <div class="counter-left">
+        <div class="counter-icon">
+          <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <p class="counter-label">Projects Completed</p>
+      </div>
+      <div class="number-wrap">
+        <span data-count="500">0</span><span class="suffix">+</span>
+      </div>
+    </div>
+
+    <div class="counter">
+      <div class="counter-left">
+        <div class="counter-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <p class="counter-label">Customers Satisfied</p>
+      </div>
+      <div class="number-wrap">
+        <span data-count="277">0</span><span class="suffix">+</span>
+      </div>
+    </div>
+
+    <div class="counter">
+      <div class="counter-left">
+        <div class="counter-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <p class="counter-label">Success Rate</p>
+      </div>
+      <div class="number-wrap">
+        <span data-count="91">0</span><span class="suffix">%</span>
+      </div>
+    </div>
+
+    <div class="counter">
+      <div class="counter-left">
+        <div class="counter-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <p class="counter-label">Years of Experience</p>
+      </div>
+      <div class="number-wrap">
+        <span data-count="10">0</span><span class="suffix">yrs</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+</div>
+
+  <!-- ================= END OF REWIVES ================= -->
+
+
+
   <!-- ================= PROFILE / PORTFOLIO SECTION ================= -->
   <section id="profile" class="portfolio-section">
 
@@ -799,6 +870,47 @@ function changeProcess(direction) {
 
   
   });
+  </script>
+
+  <script>
+    const counters = document.querySelectorAll(".counter span[data-count]");
+const counterCards = document.querySelectorAll(".counter");
+let activated = false;
+
+function easeInOutCubic(t) {
+  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+}
+
+function animateCounter(counter) {
+  const target = parseFloat(counter.dataset.count);
+  const duration = 2000;
+  const decimals = target % 1 !== 0 ? 2 : 0;
+  let startTime = null;
+
+  function animation(currentTime) {
+    if (!startTime) startTime = currentTime;
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    counter.textContent = (target * easeInOutCubic(progress)).toFixed(decimals);
+    if (progress < 1) requestAnimationFrame(animation);
+    else counter.textContent = target.toFixed(decimals);
+  }
+
+  requestAnimationFrame(animation);
+}
+
+function checkScroll() {
+  if (activated) return;
+  const rect = document.querySelector(".counters").getBoundingClientRect();
+  if (rect.top < window.innerHeight - 80) {
+    activated = true;
+    counterCards.forEach(c => c.classList.add("visible"));
+    counters.forEach(c => { c.textContent = 0; animateCounter(c); });
+  }
+}
+
+window.addEventListener("scroll", checkScroll, { passive: true });
+checkScroll();
   </script>
 
 
