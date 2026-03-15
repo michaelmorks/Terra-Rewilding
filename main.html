@@ -801,111 +801,121 @@ function changeProcess(direction) {
   
 
 
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-  
-    const cards = document.querySelectorAll(".inspiration-slider .card");
-    const envTitle = document.getElementById("env-title");
-    const envDesc = document.getElementById("env-desc");
-    const photoGrid = document.getElementById("photo-grid");
-  
-    // Data for each environment
-    const environments = {
-      terrariums: {
-        title: "Terrariums",
-        desc: "Create lush, self-contained ecosystems with mosses, ferns, and miniature plants.",
-        photos: [
-          "terrarium_img/1.png",
-          "terrarium_img/2.png",
-          "terrarium_img/3.png",
-          "terrarium_img/4.png"
-        ]
-      },
-      aquariums: {
-        title: "Aquariums",
-        desc: "Bring aquatic life into your home with beautiful fish and water plants.",
-        photos: [
-          "aquarium_img/1.jpg",
-          "aquarium_img/2.jpg",
-          "aquarium_img/3.jpg",
-          "aquarium_img/4.jpg"
-        ]
-      },
-      paludariums: {
-        title: "Paludariums",
-        desc: "Combine terrestrial and aquatic elements for a unique ecosystem experience.",
-        photos: [
-          "paludarium_img/1.png",
-          "paludarium_img/2.png",
-          "paludarium_img/3.png",
-          "paludarium_img/4.png"
-        ]
-      },
-      gardens: {
-        title: "Native Gardens",
-        desc: "Use native plants to create sustainable and low-maintenance landscapes.",
-        photos: [
-          "images/garden1.jpg",
-          "images/garden2.jpg",
-          "images/garden3.jpg",
-          "images/garden4.jpg"
-        ]
-      },
-      biotopes: {
-        title: "Biotopes",
-        desc: "Replicate specific natural environments for a realistic habitat.",
-        photos: [
-          "images/biotope1.jpg",
-          "images/biotope2.jpg",
-          "images/biotope3.jpg",
-          "images/biotope4.jpg"
-        ]
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    
+      const cards = document.querySelectorAll(".inspiration-slider .card");
+      const envTitle = document.getElementById("env-title");
+      const envDesc = document.getElementById("env-desc");
+      const photoGrid = document.getElementById("photo-grid");
+    
+      // Data for each environment
+      const environments = {
+        terrariums: {
+          title: "Terrariums",
+          desc: "Create lush, self-contained ecosystems with mosses, ferns, and miniature plants.",
+          photos: [
+            "terrarium_img/1.png",
+            "terrarium_img/2.png",
+            "terrarium_img/3.png",
+            "terrarium_img/4.png"
+          ]
+        },
+        aquariums: {
+          title: "Aquariums",
+          desc: "Bring aquatic life into your home with beautiful fish and water plants.",
+          photos: [
+            "aquarium_img/1.jpg",
+            "aquarium_img/2.jpg",
+            "aquarium_img/3.jpg",
+            "aquarium_img/4.jpg"
+          ]
+        },
+        paludariums: {
+          title: "Paludariums",
+          desc: "Combine terrestrial and aquatic elements for a unique ecosystem experience.",
+          photos: [
+            "paludarium_img/1.png",
+            "paludarium_img/2.png",
+            "paludarium_img/3.png",
+            "paludarium_img/4.png"
+          ]
+        },
+        gardens: {
+          title: "Native Gardens",
+          desc: "Use native plants to create sustainable and low-maintenance landscapes.",
+          photos: [
+            "images/garden1.jpg",
+            "images/garden2.jpg",
+            "images/garden3.jpg",
+            "images/garden4.jpg"
+          ]
+        },
+        biotopes: {
+          title: "Biotopes",
+          desc: "Replicate specific natural environments for a realistic habitat.",
+          photos: [
+            "images/biotope1.jpg",
+            "images/biotope2.jpg",
+            "images/biotope3.jpg",
+            "images/biotope4.jpg"
+          ]
+        }
+      };
+    
+      // Preload images
+      function preloadImages() {
+        Object.values(environments).forEach(env => {
+          env.photos.forEach(src => {
+            const img = new Image();
+            img.src = src;
+          });
+        });
       }
-    };
-  
-    // Function to update content
-    function updateEnvironment(envKey) {
-      const env = environments[envKey];
-      envTitle.textContent = env.title;
-      envDesc.textContent = env.desc;
-      const imgs = photoGrid.querySelectorAll("img");
-      imgs.forEach((img, index) => {
-        img.src = env.photos[index];
-        img.alt = `${env.title} ${index+1}`;
+    
+      // Update content
+      function updateEnvironment(envKey) {
+        const env = environments[envKey];
+        envTitle.textContent = env.title;
+        envDesc.textContent = env.desc;
+    
+        const imgs = photoGrid.querySelectorAll("img");
+    
+        imgs.forEach((img, index) => {
+          img.src = env.photos[index];
+          img.alt = `${env.title} ${index + 1}`;
+        });
+      }
+    
+      // Preload images
+      preloadImages();
+    
+      // Load first environment
+      updateEnvironment("terrariums");
+    
+      // Card click events
+      cards.forEach(card => {
+        card.addEventListener("click", () => {
+    
+          cards.forEach(c => c.classList.remove("active"));
+          card.classList.add("active");
+    
+          const envKey = card.getAttribute("data-env");
+          updateEnvironment(envKey);
+    
+        });
       });
-    }
-  
-    // Initialize on page load: Terrariums
-    updateEnvironment("terrariums");
-  
-    // Add click events to each card
-    cards.forEach(card => {
-      card.addEventListener("click", () => {
-        // Remove active class from all cards
-        cards.forEach(c => c.classList.remove("active"));
-        // Add active class to clicked card
-        card.classList.add("active");
-  
-        // Update environment content
-        const envKey = card.getAttribute("data-env");
-        updateEnvironment(envKey);
-      });
+    
+      // Reset slider position
+      const slider = document.querySelector(".inspiration-slider");
+      if (slider) {
+        slider.scrollLeft = 0;
+      }
+    
     });
+    </script>
 
-  document.addEventListener("DOMContentLoaded", () => {
-  const slider = document.querySelector(".inspiration-slider");
-  
-  if (slider) {
-    slider.scrollLeft = 0;
-  }
-  
-});
-
-  
-  });
-  </script>
-
+    
 <script>
   document.addEventListener("DOMContentLoaded", () => {
   
