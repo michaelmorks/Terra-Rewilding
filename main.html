@@ -863,19 +863,10 @@ function changeProcess(direction) {
         }
       };
     
-      // Preload images
-      function preloadImages() {
-        Object.values(environments).forEach(env => {
-          env.photos.forEach(src => {
-            const img = new Image();
-            img.src = src;
-          });
-        });
-      }
-    
-      // Update content
+      // Update environment content
       function updateEnvironment(envKey) {
         const env = environments[envKey];
+    
         envTitle.textContent = env.title;
         envDesc.textContent = env.desc;
     
@@ -887,11 +878,27 @@ function changeProcess(direction) {
         });
       }
     
-      // Preload images
-      preloadImages();
+      // Preload other environments (except terrariums)
+      function preloadImages() {
+        Object.entries(environments).forEach(([key, env]) => {
     
-      // Load first environment
+          if (key === "terrariums") return;
+    
+          env.photos.forEach(src => {
+            const img = new Image();
+            img.src = src;
+          });
+    
+        });
+      }
+    
+      // Load first environment instantly
       updateEnvironment("terrariums");
+    
+      // Background preload after page loads
+      window.addEventListener("load", () => {
+        setTimeout(preloadImages, 1500);
+      });
     
       // Card click events
       cards.forEach(card => {
@@ -915,7 +922,7 @@ function changeProcess(direction) {
     });
     </script>
 
-    
+
 <script>
   document.addEventListener("DOMContentLoaded", () => {
   
