@@ -162,27 +162,7 @@ window.addEventListener("load", () => {
           "paludarium_img/4.png"
         ]
       },
-      gardens: {
-        title: "Native Gardens",
-        desc: "Use native plants to create sustainable and low-maintenance landscapes.",
-        photos: [
-          "images/garden1.jpg",
-          "images/garden2.jpg",
-          "images/garden3.jpg",
-          "images/garden4.jpg"
-        ]
-      },
-      biotopes: {
-        title: "Biotopes",
-        desc: "Replicate specific natural environments for a realistic habitat.",
-        photos: [
-          "images/biotope1.jpg",
-          "images/biotope2.jpg",
-          "images/biotope3.jpg",
-          "images/biotope4.jpg"
-        ]
-      }
-    };
+    }
   
     // Update environment content
     function updateEnvironment(envKey) {

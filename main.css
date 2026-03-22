@@ -141,6 +141,44 @@ html {
   100% { opacity: 1; transform: translateX(0) scale(1); }
 }
 
+/* ===== SUBTLE LOADER (NON-INTRUSIVE) ===== */
+.loader-dots {
+  position: absolute;
+  bottom: 120px; /* adjust if needed */
+  display: flex;
+  gap: 8px;
+}
+
+/* DOT STYLE */
+.loader-dots span {
+  width: 8px;
+  height: 8px;
+  background: #2ecc71; /* matches Terra */
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: dotPulse 1.4s infinite ease-in-out;
+}
+
+/* DELAY FOR WAVE EFFECT */
+.loader-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.loader-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* ANIMATION */
+@keyframes dotPulse {
+  0%, 80%, 100% {
+    transform: scale(0.7);
+    opacity: 0.4;
+  }
+  40% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
 
 
 /* ================= NAVBAR ================= */
@@ -1580,106 +1618,145 @@ html {
   background: #d3d3d3;
   border-radius: 28px;
   overflow: hidden;
-  min-height: 420px;
   position: relative;
   box-shadow: 0 40px 80px rgba(0,0,0,0.2);
+  padding: 20px; /* gives breathing room */
 }
 
+/* STACK REVIEWS (not absolute anymore) */
 .review {
-  position: absolute;
-  inset: 0;
-  padding: 60px;
+  display: none; /* hide inactive */
+  padding: 40px;
   display: flex;
-  align-items: center;
-  gap: 50px;
-  opacity: 0;
-  transition: opacity .8s ease;
+  align-items: flex-start; /* better for long text */
+  gap: 40px;
+  animation: fadeIn 0.6s ease;
 }
 
 .review.active {
-  opacity: 1;
+  display: flex; /* show active review */
 }
 
+/* IMAGE */
 .review img {
-  width: 250px;
-  height: 250px;
+  width: 220px;
+  height: 220px;
   border-radius: 22px;
   object-fit: cover;
   box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+  flex-shrink: 0; /* prevents shrinking */
 }
 
+/* CONTENT */
 .review-content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
+/* STARS */
 .stars {
   font-size: 18px;
-  color: var(--gold);
   letter-spacing: 4px;
   color: gold;
 }
 
+/* TEXT */
 .review p {
   font-size: 1.05rem;
   line-height: 1.8;
   color: rgba(0, 0, 0, 0.75);
 }
 
+/* NAME */
 .review h3 {
-  font-size: .95rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #000000;
 }
 
+/* ROLE */
 .role {
-  font-size: .7rem;
+  font-size: .75rem;
   text-transform: uppercase;
   letter-spacing: .08em;
   color: rgba(0, 0, 0, 0.4);
 }
 
-/* Responsive */
+/* FADE ANIMATION */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
 @media (max-width: 900px) {
   .premium-container {
-    flex-direction: column; /* Stack left/right vertically */
-    gap: 40px; /* spacing between stats and reviews */
+    flex-direction: column;
+    gap: 40px;
     align-items: center;
   }
 
   .stats,
   .review-wrapper {
-    width: 100%; /* Full width on mobile */
+    width: 100%;
+  }
+
+  .review-track {
+    padding: 15px;
+    border-radius: 20px;
   }
 
   .review {
-    flex-direction: column; /* stack image + content vertically */
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    padding: 30px 20px; /* reduce padding on mobile */
-    gap: 20px;
+    padding: 20px 15px;
+    gap: 18px;
   }
 
+  /* IMAGE */
   .review img {
-    width: 180px;
-    height: 180px;
+    width: 140px;
+    height: 140px;
+    border-radius: 18px;
   }
 
+  /* TEXT CONTENT */
   .review-content {
-    gap: 12px;
-    align-items: center; /* center text under image */
+    align-items: center;
+    gap: 10px;
   }
 
+  .review p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 95%;
+  }
+
+  .review h3 {
+    font-size: 0.95rem;
+  }
+
+  .role {
+    font-size: 0.7rem;
+  }
+
+  .stars {
+    font-size: 16px;
+    letter-spacing: 3px;
+  }
+
+  /* STAT CARDS */
   .stat-card {
-    width: 100%; /* make stat cards full width */
-    padding: 20px;
-    transform: translateX(0); /* remove animation offset for mobile */
+    width: 100%;
+    padding: 18px;
+    transform: none;
   }
 
   .stat-number h2,
   .counter {
-    font-size: 2rem; /* scale down numbers for mobile */
+    font-size: 1.8rem;
   }
 
   .stat-card h4,
@@ -1692,49 +1769,53 @@ html {
 
 
 
-
-
 /* ================= FOOTER ================= */
 .footer-section {
   width: 100%;
-  background-color: #222222;
+  background: linear-gradient(135deg, #2c2c2c, #454545);
   color: #ffffff;
-  padding: 60px 0 0;
-  position: relative; /* keep footer image in place */
+  padding: 80px 20px 40px;
+  position: relative;
 }
 
+/* Container */
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 40px;
+  gap: 50px;
 }
 
-/* Headings */
+/* ===== HEADINGS (OUTLINE EFFECT) ===== */
 .footer-links h3,
 .footer-contact h3,
 .footer-social h3 {
-  font-size: 1.4rem;
-  margin-bottom: 15px;
-  color: rgb(15, 180, 0);
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+  display: inline-block;
+  padding-bottom: 6px;
+  border-bottom: 2px solid rgb(15, 180, 0); /* your green */
 }
 
-/* Links */
+/* ===== LINKS ===== */
 .footer-links a {
   display: block;
   color: #ffffff;
   text-decoration: none;
-  margin-bottom: 10px;
-  font-size: 18px;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
 }
 
 .footer-links a:hover {
   color: rgb(15, 180, 0);
+  transform: translateX(4px);
 }
 
-/* Contact */
+/* ===== CONTACT ===== */
 .footer-contact p {
   margin-bottom: 10px;
   font-size: 1.1rem;
@@ -1743,17 +1824,18 @@ html {
 .footer-contact a {
   color: #ffffff;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .footer-contact a:hover {
   color: rgb(15, 180, 0);
 }
 
-/* Social */
+/* ===== SOCIAL ===== */
 .footer-social {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .social-link {
@@ -1763,68 +1845,72 @@ html {
   color: #ffffff;
   text-decoration: none;
   font-size: 1.1rem;
-  transition: color 0.3s ease, filter 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-/* hover for text */
+.social-link:hover {
+  transform: translateX(4px);
+}
+
 .social-link:hover span {
   color: rgb(15, 180, 0);
 }
 
-/* hover for icon image (optional: brighten icons) */
 .social-link:hover img {
-  filter: brightness(1.5); /* make icons brighter */
+  filter: brightness(1.5);
 }
-
 
 .social-icon-img {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
 }
 
-
-
-/* Footer bottom */
+/* ===== FOOTER BOTTOM ===== */
 .footer-bottom {
   text-align: center;
-  margin: 0;
-  padding: 10px 0 0;
-  font-size: 17px;
-  color: #aaaaaa;
-  margin: 0; 
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  font-size: 0.95rem;
+  color: #cccccc;
 }
 
-.rights p
-{
-  color: aliceblue;
+.rights p {
+  color: #ffffff;
 }
 
+/* ===== MICHAELSOFT BRAND ===== */
 .michaelsoft-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0;
-  gap: 3px;
+  margin-top: 5px;
+  gap: 5px;
   padding-bottom: 5px;
 }
 
 .footer-MichaelSoft {
-  margin: 0;
-  font-size: 17px;
+  font-size: 1rem;
   color: #ffffff;
 }
 
 .PyramidLogo {
-  width: 25px;
+  width: 30px;
   height: auto;
 }
 
-.footer-image {
-  display: block;       /* removes inline baseline spacing */
-  width: 100vw;
-  max-width: none;
-  height: 450px;
-  margin-top: -62px;            /* remove margin-top: -62px; */
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .social-link {
+    justify-content: center;
+  }
 }
 
 
