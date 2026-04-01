@@ -136,7 +136,6 @@ window.addEventListener("load", () => {
         title: "Terrariums",
         desc: "Create lush, self-contained ecosystems with mosses, ferns, and miniature plants.",
         photos: [
-          "terrarium_img/1.png",
           "terrarium_img/2.png",
           "terrarium_img/3.png",
           "terrarium_img/4.png"
@@ -149,7 +148,6 @@ window.addEventListener("load", () => {
           "aquarium_img/1.jpg",
           "aquarium_img/2.jpg",
           "aquarium_img/3.jpg",
-          "aquarium_img/4.jpg"
         ]
       },
       paludariums: {
@@ -159,7 +157,6 @@ window.addEventListener("load", () => {
           "paludarium_img/1.png",
           "paludarium_img/2.png",
           "paludarium_img/3.png",
-          "paludarium_img/4.png"
         ]
       },
     }
