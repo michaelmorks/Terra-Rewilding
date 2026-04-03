@@ -137,7 +137,6 @@ window.addEventListener("load", () => {
         desc: "Create lush, self-contained ecosystems with mosses, ferns, and miniature plants.",
         photos: [
           "terrarium_img/2.png",
-          "terrarium_img/3.png",
           "terrarium_img/4.png"
         ]
       },
@@ -147,7 +146,6 @@ window.addEventListener("load", () => {
         photos: [
           "aquarium_img/1.jpg",
           "aquarium_img/2.jpg",
-          "aquarium_img/3.jpg",
         ]
       },
       paludariums: {
@@ -156,7 +154,6 @@ window.addEventListener("load", () => {
         photos: [
           "paludarium_img/1.png",
           "paludarium_img/2.png",
-          "paludarium_img/3.png",
         ]
       },
     }
@@ -286,5 +283,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 5000);
   }
 
+});
+
+
+// SEE MORE
+document.querySelectorAll('.see-more-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const review = btn.closest('.review');
+    review.classList.toggle('expanded');
+
+    btn.textContent = review.classList.contains('expanded')
+      ? 'See Less'
+      : 'See More';
+  });
+});
+
+document.querySelectorAll('#services .see-more-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const box = btn.closest('.service-box');
+    box.classList.toggle('expanded');
+
+    btn.textContent = box.classList.contains('expanded')
+      ? 'See Less'
+      : 'See More';
+  });
 });
 
