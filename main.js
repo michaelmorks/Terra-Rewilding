@@ -219,28 +219,53 @@ window.addEventListener("load", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* =========================
-     COUNTER FUNCTION
-  ========================== */
-  const counters = document.querySelectorAll(".counter");
 
-  const startCounter = (counter) => {
-    const target = +counter.dataset.target;
-    let count = 0;
+/* === CAROUSEL === */
+let cur = 0;
+const total = 3;
 
-    const update = () => {
-      count += target / 120;
+function go(n) {
+  document.getElementById('r' + cur).classList.remove('active');
+  document.getElementById('d' + cur).classList.remove('active');
+  cur = n;
+  document.getElementById('r' + cur).classList.add('active');
+  document.getElementById('d' + cur).classList.add('active');
+}
+function next() { go((cur + 1) % total); }
+function prev() { go((cur - 1 + total) % total); }
 
-      if (count < target) {
-        counter.textContent = Math.ceil(count);
-        requestAnimationFrame(update);
-      } else {
-        counter.textContent = target;
-      }
-    };
+function toggle(btn) {
+  const card = btn.closest('.review-card');
+  card.classList.toggle('expanded');
+  btn.textContent = card.classList.contains('expanded') ? 'Show less' : 'Read more';
+}
 
-    update();
+/* === COUNTERS === */
+const startCounter = (counter) => {
+  const target = +counter.dataset.target;
+  let count = 0;
+  const update = () => {
+    count += target / 120;
+    if (count < target) {
+      counter.textContent = Math.ceil(count);
+      requestAnimationFrame(update);
+    } else {
+      counter.textContent = target;
+    }
   };
+  update();
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      startCounter(entry.target);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.counter').forEach((counter) => observer.observe(counter));
 
 
   /* =========================
@@ -309,3 +334,23 @@ document.querySelectorAll('#services .see-more-btn').forEach(btn => {
   });
 });
 
+
+let cur = 0;
+const total = 3;
+
+function go(n) {
+  document.getElementById('r' + cur).classList.remove('active');
+  document.getElementById('d' + cur).classList.remove('active');
+  cur = n;
+  document.getElementById('r' + cur).classList.add('active');
+  document.getElementById('d' + cur).classList.add('active');
+}
+
+function next() { go((cur + 1) % total); }
+function prev() { go((cur - 1 + total) % total); }
+
+function toggle(btn) {
+  const card = btn.closest('.review-card');
+  card.classList.toggle('expanded');
+  btn.textContent = card.classList.contains('expanded') ? 'Show less' : 'Read more';
+}
