@@ -1772,9 +1772,8 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 5px;
-  gap: 5px;
-  padding-bottom: 5px;
+  gap: 1px;
+  margin-top: 0;
 }
 
 .footer-MichaelSoft {
@@ -1783,8 +1782,9 @@ html {
 }
 
 .PyramidLogo {
-  width: 30px;
+  width: 40px;
   height: auto;
+  margin-bottom: 3px;
 }
 
 /* ===== RESPONSIVE ===== */
