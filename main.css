@@ -1274,8 +1274,8 @@ html {
   }
 
   .product-item img {
-    width: 100%;
-    height: 300px; /* bigger + no crop feeling */
+    width: 90%;
+    height: 250px; /* bigger + no crop feeling */
   }
 
   .price {
@@ -1951,9 +1951,10 @@ html {
   }
 
   .before-after-images img {
-    width: 45%;       /* smaller than desktop to fit on phone */
-    height: auto;     /* maintain aspect ratio */
-    max-width: 200px; /* optional max-width */
+    width: 50%;       /* smaller than desktop to fit on phone */
+    height: 250px;     /* maintain aspect ratio */
+    max-width: 250px; /* optional max-width */
+
   }
 
   /* ===== VIDEO GRID ===== */
