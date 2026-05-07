@@ -1274,8 +1274,9 @@ html {
   }
 
   .product-item img {
-    width: 90%;
+    width: 70%;
     height: 250px; /* bigger + no crop feeling */
+    border-radius: 50px;
   }
 
   .price {
@@ -1954,7 +1955,7 @@ html {
     width: 50%;       /* smaller than desktop to fit on phone */
     height: 250px;     /* maintain aspect ratio */
     max-width: 250px; /* optional max-width */
-
+    grid-template-columns: repeat(3, 1fr); 
   }
 
   /* ===== VIDEO GRID ===== */
