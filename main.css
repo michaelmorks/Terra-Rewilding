@@ -1952,7 +1952,7 @@ html {
   }
 
   .before-after-images img {
-    width: 38%;   /* slightly smaller so both fit */
+    width: 28%;   /* slightly smaller so both fit */
     height: 200px;
     object-fit: cover;
   }
