@@ -1943,19 +1943,18 @@ html {
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
 
-  /* ===== BEFORE / AFTER IMAGES ===== */
   .before-after-images {
-    flex-direction: row;      /* keep side by side like desktop */
-    flex-wrap: wrap;          /* allow wrapping if needed */
-    justify-content: center;  /* center the images */
-    gap: 20px;                /* spacing between images */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap; /* prevents stacking */
+    justify-content: center;
+    gap: 10px;
   }
 
   .before-after-images img {
-    width: 50%;       /* smaller than desktop to fit on phone */
-    height: 250px;     /* maintain aspect ratio */
-    max-width: 250px; /* optional max-width */
-    grid-template-columns: repeat(3, 1fr); 
+    width: 48%;   /* slightly smaller so both fit */
+    height: 200px;
+    object-fit: cover;
   }
 
   /* ===== VIDEO GRID ===== */
